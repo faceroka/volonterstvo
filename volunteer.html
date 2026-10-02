@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Стать волонтёром — Добро рядом</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        .volunteer-page {
+            background: #f5f6f4;
+            min-height: calc(100vh - 88px);
+            padding: 70px 0 100px;
+        }
+
+        .volunteer-header {
+            max-width: 760px;
+            margin-bottom: 45px;
+        }
+
+        .volunteer-header h1 {
+            font-size: 48px;
+            line-height: 1.1;
+            margin-bottom: 18px;
+            color: #202020;
+        }
+
+        .volunteer-header p {
+            color: #6e6e6e;
+            font-size: 16px;
+        }
+
+        .volunteer-form {
+            max-width: 900px;
+            background: #fff;
+            padding: 45px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.07);
+        }
+
+        .form-section {
+            margin-bottom: 45px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .form-section h2 {
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .form-section-description {
+            margin-bottom: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #222;
+            font: inherit;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .form-group textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #35a853;
+            box-shadow: 0 0 0 3px rgba(53,168,83,0.08);
+        }
+
+        .required {
+            color: #35a853;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .day-option input {
+            display: none;
+        }
+
+        .day-option label {
+            display: block;
+            padding: 16px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .day-option label:hover {
+            border-color: #35a853;
+        }
+
+        .day-option input:checked + label {
+            background: #35a853;
+            color: white;
+            border-color: #35a853;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .activity-option input {
+            display: none;
+        }
+
+        .activity-option label {
+            display: flex;
+            align-items: center;
+            min-height: 70px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .activity-option label:hover {
+            border-color: #35a853;
+        }
+
+        .activity-option input:checked + label {
+            border-color: #35a853;
+            background: #edf8ef;
+        }
+
+        .age-info {
+            padding: 20px;
+            margin-top: 25px;
+            background: #edf8ef;
+            border-left: 4px solid #35a853;
+        }
+
+        .age-info h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .age-info ul {
+            padding-left: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .age-info li {
+            margin-bottom: 7px;
+        }
+
+        .parent-consent {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #fff8e8;
+            border-left: 4px solid #d89b22;
+        }
+
+        .parent-consent.active {
+            display: block;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .checkbox input {
+            margin-top: 4px;
+            accent-color: #35a853;
+        }
+
+        .checkbox label {
+            font-size: 13px;
+            color: #555;
+        }
+
+        .submit-button {
+            width: 100%;
+            min-height: 55px;
+            padding: 0 25px;
+            border: 0;
+            background: #35a853;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #21863b;
+        }
+
+        .form-message {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            background: #edf8ef;
+            color: #21863b;
+            border-left: 4px solid #35a853;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #35a853;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 700px) {
+
+            .volunteer-page {
+                padding: 45px 0 70px;
+            }
+
+            .volunteer-header h1 {
+                font-size: 36px;
+            }
+
+            .volunteer-form {
+                padding: 25px 20px;
+            }
+
+            .form-grid,
+            .activity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .days-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <div class="container header__inner">
+
+        <a href="index.html" class="logo">
+
+            <div class="logo__icon">
+                <img src="images/logo.jpg" alt="Добро рядом">
+            </div>
+
+            <div class="logo__text">
+                Empatia
+            </div>
+
+        </a>
+
+
+        <nav class="nav">
+
+            <a href="index.html#about">
+                О проекте
+            </a>
+
+            <a href="index.html#projects">
+                Направления
+            </a>
+
+            <a href="index.html#news">
+                Новости
+            </a>
+
+            <a href="index.html#contacts">
+                Контакты
+            </a>
+
+        </nav>
+
+
+        <div class="header__actions">
+
+            <a href="index.html" class="header__button">
+                Вернуться
+            </a>
+
+        </div>
+
+
+        <button class="menu-button">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="volunteer-page">
+
+    <div class="container">
+
+
+        <a href="index.html" class="back-link">
+            ← Вернуться на главную
+        </a>
+
+
+        <div class="volunteer-header">
+
+            <span class="section-label">
+                ЗАЯВКА НА ВОЛОНТЁРСТВО
+            </span>
+
+            <h1>
+                Станьте частью
+                доброго дела
+            </h1>
+
+            <p>
+                Заполните анкету, выберите удобные дни,
+                место и направление помощи.
+                После отправки заявки с вами свяжется
+                координатор.
+            </p>
+
+        </div>
+
+
+        <form class="volunteer-form" id="volunteerForm">
+
+
+            <!-- ЛИЧНЫЕ ДАННЫЕ -->
+
+            <section class="form-section">
+
+                <h2>
+                    Личная информация
+                </h2>
+
+                <p class="form-section-description">
+                    Заполните основные данные о себе.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="fullname">
+                            ФИО <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="Иванов Иван Иванович"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="age">
+                            Возраст <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="1"
+                            max="100"
+                            placeholder="18"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Номер телефона <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+7 (___) ___-__-__"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="idnumber">
+                            Удостоверение личности
+                        </label>
+
+                        <input
+                            type="text"
+                            id="idnumber"
+                            name="idnumber"
+                            placeholder="Номер удостоверения"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="age-info">
+
+                    <h3>
+                        Возрастные ограничения
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            18+ — волонтёрская деятельность
+                            может осуществляться самостоятельно.
+                        </li>
+
+                        <li>
+                            Несовершеннолетние могут участвовать
+                            только в безопасной деятельности,
+                            которая не вредит здоровью и не мешает учёбе.
+                        </li>
+
+                        <li>
+                            Для детей младшего возраста требуется
+                            письменное согласие родителя/опекуна
+                            или участие вместе с ним.
+                        </li>
+
+                        <li>
+                            Несовершеннолетних нельзя привлекать
+                            к тяжёлым, вредным или опасным работам.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="parent-consent" id="parentConsent">
+
+                    <strong>
+                        Для несовершеннолетних
+                    </strong>
+
+                    <p>
+                        Для участия может потребоваться
+                        согласие родителя или законного представителя.
+                        Координатор сообщит необходимые требования
+                        перед участием.
+                    </p>
+
+
+                    <div class="checkbox">
+
+                        <input
+                            type="checkbox"
+                            id="parentPermission"
+                            name="parentPermission"
+                        >
+
+                        <label for="parentPermission">
+
+                            Я подтверждаю, что родитель или законный
+                            представитель осведомлён об участии
+                            несовершеннолетнего.
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- МЕСТО -->
+
+            <section class="form-section">
+
+                <h2>
+                    Место волонтёрства
+                </h2>
+
+                <p class="form-section-description">
+                    Выберите подходящую точку.
+                </p>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group full">
+
+                        <label for="address">
+                            Адрес точки <span class="required">*</span>
+                        </label>
+
+                        <select id="address" name="address" required>
+
+                            <option value="">
+                                Выберите адрес
+                            </option>
+
+                            <option value="point1">
+                                Точка №1 — указать адрес
+                            </option>
+
+                            <option value="point2">
+                                Точка №2 — указать адрес
+                            </option>
+
+                            <option value="point3">
+                                Точка №3 — указать адрес
+                            </option>
+
+                            <option value="other">
+                                Другая точка
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label for="customAddress">
+                            Если выбрали «Другая точка»
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customAddress"
+                            name="customAddress"
+                            placeholder="Введите адрес"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ДЕЯТЕЛЬНОСТЬ -->
+
+            <section class="form-section">
+
+                <h2>
+                    Вид деятельности
+                </h2>
+
+                <p class="form-section-description">
+                    Выберите подходящие направления.
+                </p>
+
+
+                <div class="activity-grid">
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-clean"
+                            name="activity"
+                            value="Уборка местности"
+                        >
+
+                        <label for="activity-clean">
+                            Уборка местности
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-search"
+                            name="activity"
+                            value="Помощь с поисками животных или людей"
+                        >
+
+                        <label for="activity-search">
+                            Помощь с поисками животных или людей
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-people"
+                            name="activity"
+                            value="Кормление людей"
+                        >
+
+                        <label for="activity-people">
+                            Помощь с кормлением людей
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-animals"
+                            name="activity"
+                            value="Кормление животных"
+                        >
+
+                        <label for="activity-animals">
+                            Кормление животных
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-social"
+                            name="activity"
+                            value="Социальные сети"
+                        >
+
+                        <label for="activity-social">
+                            Помощь с социальными сетями
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-food"
+                            name="activity"
+                            value="Сортировка корма и вещей"
+                        >
+
+                        <label for="activity-food">
+                            Сортировка корма и вещей
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-info"
+                            name="activity"
+                            value="Распространение информации"
+                        >
+
+                        <label for="activity-info">
+                            Распространение информации
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-transfer"
+                            name="activity"
+                            value="Организация передачи вещей"
+                        >
+
+                        <label for="activity-transfer">
+                            Организация передачи вещей
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-photo"
+                            name="activity"
+                            value="Фотографирование животных"
+                        >
+
+                        <label for="activity-photo">
+                            Фотографирование животных
+                        </label>
+
+                    </div>
+
+
+                    <div class="activity-option">
+
+                        <input
+                            type="checkbox"
+                            id="activity-events"
+                            name="activity"
+                            value="Безопасные мероприятия"
+                        >
+
+                        <label for="activity-events">
+                            Помощь на безопасных мероприятиях
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ДНИ -->
+
+            <section class="form-section">
+
+                <h2>
+                    Дни волонтёрства
+                </h2>
+
+                <p class="form-section-description">
+                    Выберите удобные дни.
+                </p>
+
+
+                <div class="days-grid">
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day1"
+                            name="days"
+                            value="Понедельник"
+                        >
+
+                        <label for="day1">
+                            Понедельник
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day2"
+                            name="days"
+                            value="Вторник"
+                        >
+
+                        <label for="day2">
+                            Вторник
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day3"
+                            name="days"
+                            value="Среда"
+                        >
+
+                        <label for="day3">
+                            Среда
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day4"
+                            name="days"
+                            value="Четверг"
+                        >
+
+                        <label for="day4">
+                            Четверг
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day5"
+                            name="days"
+                            value="Пятница"
+                        >
+
+                        <label for="day5">
+                            Пятница
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day6"
+                            name="days"
+                            value="Суббота"
+                        >
+
+                        <label for="day6">
+                            Суббота
+                        </label>
+
+                    </div>
+
+
+                    <div class="day-option">
+
+                        <input
+                            type="checkbox"
+                            id="day7"
+                            name="days"
+                            value="Воскресенье"
+                        >
+
+                        <label for="day7">
+                            Воскресенье
+                        </label>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ДОПОЛНИТЕЛЬНО -->
+
+            <section class="form-section">
+
+                <h2>
+                    Дополнительная информация
+                </h2>
+
+                <p class="form-section-description">
+                    Расскажите о себе или оставьте комментарий.
+                </p>
+
+
+                <div class="form-group">
+
+                    <label for="comment">
+                        Комментарий
+                    </label>
+
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        placeholder="Например: есть опыт работы с животными..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="rules"
+                        required
+                    >
+
+                    <label for="rules">
+
+                        Я ознакомился(ась) с правилами
+                        безопасного волонтёрства и подтверждаю,
+                        что предоставленная мной информация
+                        является достоверной.
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+
+            <button
+                type="submit"
+                class="submit-button"
+            >
+                Отправить заявку
+            </button>
+
+
+            <div
+                class="form-message"
+                id="formMessage"
+            >
+                Заявка заполнена. Сейчас она существует
+                только в браузере — для реальной отправки
+                потребуется подключить сервер или сервис
+                обработки форм.
+            </div>
+
+
+        </form>
+
+    </div>
+
+</main>
+
+
+<script>
+
+const ageInput = document.getElementById("age");
+const parentConsent = document.getElementById("parentConsent");
+
+ageInput.addEventListener("input", function () {
+
+    const age = Number(this.value);
+
+    if (age > 0 && age < 18) {
+
+        parentConsent.classList.add("active");
+
+    } else {
+
+        parentConsent.classList.remove("active");
+
+    }
+
+});
+
+
+const form = document.getElementById("volunteerForm");
+const message = document.getElementById("formMessage");
+
+
+form.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+    const activities =
+        document.querySelectorAll(
+            'input[name="activity"]:checked'
+        );
+
+    const days =
+        document.querySelectorAll(
+            'input[name="days"]:checked'
+        );
+
+    if (activities.length === 0) {
+
+        alert(
+            "Выберите хотя бы один вид деятельности."
+        );
+
+        return;
+
+    }
+
+
+    if (days.length === 0) {
+
+        alert(
+            "Выберите хотя бы один удобный день."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        Number(ageInput.value) < 18 &&
+        !document.getElementById("parentPermission").checked
+    ) {
+
+        alert(
+            "Для несовершеннолетнего необходимо подтверждение осведомлённости родителя или законного представителя."
+        );
+
+        return;
+
+    }
+
+
+    message.style.display = "block";
+
+    message.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+});
+
+
+</script>
+
+
+</body>
+</html>
